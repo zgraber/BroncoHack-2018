@@ -1,0 +1,23 @@
+{
+  "name": "broncohack-2018",
+  "version": "1.0.0",
+  "description": "Project for BroncoHack2018",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zgraber/BroncoHack-2018.git"
+  },
+  "author": "The Boyos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zgraber/BroncoHack-2018/issues"
+  },
+  "homepage": "https://github.com/zgraber/BroncoHack-2018#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3"
+  }
+}
