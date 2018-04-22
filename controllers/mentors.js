@@ -62,18 +62,29 @@ mentorsRouter.post('/', (req, res, next) => {
   res.status(201).redirect('/');
 });
 
-mentorsRouter.put('/:id', (req, res, next) => {
+mentorsRouter.put('/public/:id', (req, res, next) => {
   let body = req.body;
-  let id = req.params;
   let fname = body.fname;
   let lname = body.lname;
   let category = body.category;
   let description = body.description;
   let img = body.img;
-  db.run(sqlMethods.editUser("MENTORS", fname, lname, category, description, img, id));
-  console.log('User Edited');
+  let id = body.id;
+  db.run(sqlMethods.editPublicUser(fname, lname, category, description, img, id));
+  console.log('User\'s Public Data Edited');
   res.status(200).send();
 });
+
+mentorsRouter.put('/private/:id', (req, res, next) => {
+	let body = req.body;
+	let pword = body.pword;
+	let email = body.email;
+	let phone = body.phone;
+	let id = body.id;
+	db.run(sqlMethods.editPrivateUser(pword, email, phone, id));
+	console.log('User\'s Private Data Edited');
+	res.status(200).send();
+)};
 
 mentorsRouter.delete('/:id', (req, res, next) => {
   let id = req.params.id;
