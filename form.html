@@ -5,9 +5,9 @@
   </head>
   <body>
     <form id="profile" onsubmit="return validateForm()" action="/mentors" method="post">
-    First Name:<input type="text" name="firstname"/><br>
-    Last Name:<input type="text" name="lastname"/><br>
-    Catagory:<select name="catag"><br>
+    First Name:<input type="text" name="fname"/><br>
+    Last Name:<input type="text" name="lname"/><br>
+    Category:<select name="category"><br>
                 <option value="coding"> Coding </option>
                 <option value="finance"> Finance </option>
                 <option value="fitness"> Fitness </option>
@@ -15,11 +15,10 @@
                 <option value="law"> Law/Legal </option>
                 <option value="sus"> Sustainability </option>
              </select>
-    <br>Description:<input type="text" name="descrip"/><br>
+    <br>Description:<input type="text" name="description"/><br>
     Profile Picture:<br><img src="pic" height="200" alt="Image Preview.."/><br>
     <input type="file" onchange="previewFile()" name="userFile"/><br>
-    Tier 1 Rewards: <input type="text" name="1"/><br>
-    Tier 2 Rewards: <input type="text" name="2"/><br>
+    <button type="submit" value="Create Profile">Create Profile</button>
     <script>
       function previewFile() {
         var preview = document.querySelector('img');
@@ -35,10 +34,9 @@
         }
       }
       function validateForm() {
-        var x = document.forms["submitpage"]["descrip"].value;
-        var x = document.forms["uploadForm"]["descrip"].value;
+        var x = document.forms["profile"]["description"].value;
         if (x==""){
-          alert("Description must be filled out.");
+          alert("Information must be filled out.");
           return false;
         }  
       }
