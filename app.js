@@ -4,8 +4,33 @@ const bodyParser = require('body-parser');
 const sqlMethods = require('./sqlMethods.js');
 const path = require('path');
 
+var exphbs=require('express-handlebars');
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('./main.db');
+
+var hbs = exphbs.create({
+    // Specify helpers which are only registered on this instance.
+    helpers: {
+
+        grouped_each: function (every, context, options) {
+             var out = "", subcontext = [], i;
+             if (context && context.length > 0) {
+         for (i = 0; i < context.length; i++) {
+            if (i > 0 && i % every === 0) {
+                out += options.fn(subcontext);
+                subcontext = [];
+            }
+            subcontext.push(context[i]);
+        }
+        out += options.fn(subcontext);
+    }
+    return out;
+}
+    }
+});
+
+app.engine('handlebars',hbs.engine);
+app.set('view engine', 'handlebars');
 
 db.serialize(function() {
   db.run(sqlMethods.createTable());
@@ -19,12 +44,15 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+app.use(express.static('views'));
 app.use(express.static(path.join(__dirname, 'pages')));
+
 
 
 
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '\\pages\\prelog\\prelog.html'));
+    //res.render('')
 });
 
 app.get('/form/:file', function(req, res) {
