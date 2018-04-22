@@ -7,6 +7,16 @@ let sqlMethods = require('../sqlMethods');
 const mentorsRouter = express.Router();
 module.exports = mentorsRouter;
 //app.use(bodyParser.json());
+
+/*function getRows() {
+  db.all(sqlMethods.allData('MENTORS'), function(err, rows){
+    if(err) {
+      console.log(err);
+    } else {
+      return rows.length;
+    }
+  });
+}*/
 mentorsRouter.get('/', (req, res, next) => {
   db.all(sqlMethods.allData('MENTORS'), function(err, rows){
     if(err) {
@@ -19,7 +29,7 @@ mentorsRouter.get('/', (req, res, next) => {
 
 mentorsRouter.get('/:id', (req, res, next) => {
   let id = req.params.id;
-  db.get(sqlMethods.selectRow("MENTOR", id), (err, row) =>{
+  db.get(sqlMethods.selectRow("MENTORS", id), (err, row) =>{
     if(err) {
       console.log('User Not Found');
       res.status(404).send('User Not Found');
@@ -42,16 +52,10 @@ mentorsRouter.get('/categories/:category', (req, res, next) => {
 
 mentorsRouter.post('/', (req, res, next) => {
   let body = req.body;
-  //console.log(req.body);
-  let id;
-  db.get(sqlMethods.countUser('MENTORS', function(err, row){
-    if (err) {
-      console.log(err);
-    } else {
-      id = row['Count(*)'] + 1000;
-      console.log('test');
-    }
-  }));
+  console.log(req.body);
+
+  let id = Math.floor(Math.random() * 10000000000);
+  console.log(id);
   let fname = body.fname;
   let lname = body.lname;
   let category = body.category;
@@ -67,17 +71,28 @@ mentorsRouter.post('/', (req, res, next) => {
   res.status(201).redirect('/');
 });
 
-mentorsRouter.put('/:id', (req, res, next) => {
+mentorsRouter.put('/public/:id', (req, res, next) => {
   let body = req.body;
-  let id = req.params;
   let fname = body.fname;
   let lname = body.lname;
   let category = body.category;
   let description = body.description;
   let img = body.img;
-  db.run(sqlMethods.editUser("MENTORS", fname, lname, category, description, img, id));
-  console.log('User Edited');
+  let id = body.id;
+  db.run(sqlMethods.editPublicUser(fname, lname, category, description, img, id));
+  console.log('User\'s Public Data Edited');
   res.status(200).send();
+});
+
+mentorsRouter.put('/private/:id', (req, res, next) => {
+	let body = req.body;
+	let pword = body.pword;
+	let email = body.email;
+	let phone = body.phone;
+	let id = body.id;
+	db.run(sqlMethods.editPrivateUser(pword, email, phone, id));
+	console.log('User\'s Private Data Edited');
+	res.status(200).send();
 });
 
 mentorsRouter.delete('/:id', (req, res, next) => {
