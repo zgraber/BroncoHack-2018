@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+  <head><link rel="stylesheet" type ="text/css" href="profileform">
+    <h1>Create Profile</h1>
+  </head>
+  <body>
+    <form id="profile" onsubmit="return validateForm()" action="submitpage" method="post">
+    First Name:<input type="text" name="firstname"/><br>
+    Last Name:<input type="text" name="lastname"/><br>
+    Catagory:<select name="catag"><br>
+                <option value="coding"> Coding </option>
+                <option value="finance"> Finance </option>
+                <option value="fitness"> Fitness </option>
+                <option value="health"> Medicine </option>
+                <option value="law"> Law/Legal </option>
+                <option value="sus"> Sustainability </option>
+             </select>
+    <br>Description:<input type="text" name="descrip"/><br>
+    Profile Picture:<br><img src="pic" height="200" alt="Image Preview.."/><br>
+    <input type="file" onchange="previewFile()" name="userFile"/><br>
+    Tier 1: <input type="text" name="1"/><br>
+    Tier 2: <input type="text" name="2"/><br>
+    <script>
+      function previewFile() {
+        var preview = document.querySelector('img');
+        var file    = document.querySelector('input[type=file]').files[0];
+        var reader  = new FileReader();
+        reader.onloadend = function () {
+          preview.src = reader.result;
+        }
+        if (file) {
+          reader.readAsDataURL(file);
+        } else {
+          preview.src = "";
+        }
+      }
+      function validateForm() {
+        var x = document.forms["submitpage"]["descrip"].value;
+        var x = document.forms["uploadForm"]["descrip"].value;
+        if (x==""){
+          alert("Description must be filled out.");
+          return false;
+        }  
+      }
+     </script>
+    </form>
+  </body
+</html>
