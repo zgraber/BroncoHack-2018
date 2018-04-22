@@ -1,0 +1,13 @@
+.profile-image{
+    margin-top: 1.5rem!important;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+	width: 200px;
+	height: 200px;
+}
+
+.center-text{
+	text-align: center;
+}
