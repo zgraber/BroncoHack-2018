@@ -58,12 +58,15 @@ app.get('/', function(req, res) {
 });
 
 app.get('/form/:file', function(req, res) {
-  res.sendFile(path.join(__dirname + '\\pages\\form\\form.html'));
+  res.sendFile(path.join(__dirname + '\\views\\form.html'));
 });
-app.get('/categories/:file', function(req, res) {
-  res.sendFile(path.join(__dirname + '\\pages\\categories\\categories.html'));
+app.get('/categories', function(req, res) {
+  res.sendFile(path.join(__dirname + '\\views\\categories.html'));
 });
 
+//app.get('/categories', function(req, res) {
+//  res.render('categories');
+//});
 
 
 const mentorsRouter = require('./controllers/mentors.js');

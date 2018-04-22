@@ -87,16 +87,20 @@ mentorsRouter.get('/:id', (req, res, next) => {
   });
 });
 
+
 mentorsRouter.get('/categories/:category', (req, res, next) => {
   let category = req.params.category;
   db.all(sqlMethods.selectCategories(category), function(err, rows){
     if(err) {
       res.status(404).send('Nothing found');
     } else {
-      res.render('mentorList2.handlebars', {data: JSON.stringify(rows)});
+      var row=JSON.stringify(rows);
+      console.log(row);
+      //var row=rows;
+      res.render('mentorList2',{data:row});
     }
   });
-  res.render('mentorList2.handlebars',)
+  
 })
 
 mentorsRouter.post('/', saveImage, (req, res, next) => {
