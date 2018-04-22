@@ -18,10 +18,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(express.static(path.join(__dirname, 'pages')));
 
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '\\form.html'));
+    res.sendFile(path.join(__dirname + '\\pages\\prelog\\prelog.html'));
+});
+
+app.get('/form/:file', function(req, res) {
+  res.sendFile(path.join(__dirname + '\\pages\\form\\form.html'));
+});
+app.get('/categories/:file', function(req, res) {
+  res.sendFile(path.join(__dirname + '\\pages\\categories\\categories.html'));
 });
 
 const mentorsRouter = require('./controllers/mentors.js');
