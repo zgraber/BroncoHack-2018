@@ -1,0 +1,18 @@
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/css/bootstrap-grid.css" type="text/css" rel="stylesheet">
+</head>
+
+
+
+<div class="container">
+    {{#grouped_each 3 data}}
+        <div class="row">
+            {{#each this}}
+                <div class="col-sm">
+                    {{ this.FNAME }} {{ this.LNAME }}
+                </div>
+            {{/each}}
+        </div>
+    {{/grouped_each}}
+
+</div>

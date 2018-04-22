@@ -19,8 +19,12 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
     "path": "^0.12.7",
     "pg": "^7.4.1",
     "sqlite3": "^4.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.3"
   }
 }
