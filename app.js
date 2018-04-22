@@ -21,6 +21,8 @@ app.use(bodyParser.urlencoded({
 
 app.use(express.static(path.join(__dirname, 'pages')));
 
+
+
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '\\pages\\prelog\\prelog.html'));
 });
@@ -31,6 +33,8 @@ app.get('/form/:file', function(req, res) {
 app.get('/categories/:file', function(req, res) {
   res.sendFile(path.join(__dirname + '\\pages\\categories\\categories.html'));
 });
+
+
 
 const mentorsRouter = require('./controllers/mentors.js');
 app.use('/mentors', mentorsRouter);
