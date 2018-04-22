@@ -44,8 +44,13 @@ mentorsRouter.post('/', (req, res, next) => {
   let body = req.body;
   //console.log(req.body);
   let id;
-  db.run(sqlMethods.countUser('MENTORS', function(err, result){
-    id = result + 1000;
+  db.get(sqlMethods.countUser('MENTORS', function(err, row){
+    if (err) {
+      console.log(err);
+    } else {
+      id = row['Count(*)'] + 1000;
+      console.log('test');
+    }
   }));
   let fname = body.fname;
   let lname = body.lname;
@@ -57,7 +62,7 @@ mentorsRouter.post('/', (req, res, next) => {
   let email = body.email;
   let phone = body.phone;
   //console.log(sqlMethods.newUser(id, fname, lname, category, description, img));
-  db.run(sqlMethods.newUser("MENTORS", id, fname, lname, category, description, img, username, pword, email, phone));
+  db.run(sqlMethods.newUser(id, fname, lname, category, description, img, username, pword, email, phone));
   console.log('User Added');
   res.status(201).redirect('/');
 });
