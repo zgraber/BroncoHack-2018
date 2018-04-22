@@ -49,7 +49,6 @@
 
      <!-- Page Heading -->
      <h1 class="my-4">Sign Up</h1>
-    <form id="profile" onsubmit="return validateForm()" action="complete.html" method="post">
     <form id="profile" onsubmit="return validateForm()" action="/mentors" method="post">
     <label class="starred">First Name*:</label><input class="form-control" type="text" name="fname"/><br>
     <label class="starred">Last Name*:</label><input class="form-control" type="text" name="lname"/><br>
@@ -93,7 +92,6 @@
         }
       }
       function validateForm() {
-        var x = document.forms["profile"]["description"].value;
         var x = document.forms["profile"]["user"].value;
         if (x==""){
           alert("Information must be filled out.");
