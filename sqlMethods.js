@@ -6,13 +6,11 @@ module.exports = {
 	//Pulls all mentors from the table
 	allData: function(table) {return `SELECT * FROM "${table}";`},
 	//Generic edit
-	gEdit: function(table, id, column, data) {return `UPDATE "${table}" SET "${column}" = "${data}" WHERE ID = ${id}`},
 	//Select all the data on a user from the table
 	selectRow: function(table, id){return `SELECT * FROM ${table} WHERE ID = ${id};`},
 	//Select categories of a type from MENTORS
 	selectCategories: function(category) {return `SELECT ID, FNAME, LNAME, IMG FROM MENTORS WHERE CATEGORY = "${category}";`},
 	//Insert a new user into the table -- needs variable names as they are in VALUES(...)
-	newUser: function(id, fname, lname, category, description, img, username, pword, email, phone) {return `INSERT INTO MENTORS(ID, FNAME, LNAME, CATEGORY, DESCRIPTION, IMG) VALUES(${id}, "${fname}", "${lname}", "${category}", "${description}", "${img}"); INSERT INTO MENTORDATA(ID, USERNAME, PWORD, EMAIL, PHONE) VALUES(${id}, "${username}", "${pword}", "${email}", "${phone}"); INSERT INTO SITEDATA(ID) VALUES("{id}");`},
 	//Update a user's public values -- note that ALL values except ID need to be accounted for, even if they are unchanged
 	editPublicUser: function(fname, lname, category, description, img, id) {return `UPDATE MENTORS SET FNAME = ${fname}, LNAME = ${lname}, CATEGORY = ${category}, DESCRIPTION = ${description}, IMG = ${img} WHERE ID = ${id};`},
 	//Update a user's private data
