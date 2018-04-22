@@ -1,7 +1,6 @@
 +```javascript
 var context = {
-	"First Name":"Carter",
-	"Last Name":"Duncan",
+    "name: Carter Duncan",
 	"occupation" : "Programmer"
 }
 
