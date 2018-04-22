@@ -57,8 +57,7 @@ mentorsRouter.post('/', (req, res, next) => {
   let email = body.email;
   let phone = body.phone;
   //console.log(sqlMethods.newUser(id, fname, lname, category, description, img));
-  db.run(sqlMethods.newUser("MENTORS", id, fname, lname, category, description, img));
-  db.run(sqlMethods.newUser("MENTORDATA", id, username, pword, email, phone));
+  db.run(sqlMethods.newUser("MENTORS", id, fname, lname, category, description, img, username, pword, email, phone));
   console.log('User Added');
   res.status(201).redirect('/');
 });

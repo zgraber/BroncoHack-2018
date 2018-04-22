@@ -8,7 +8,7 @@ module.exports = {
 	//Select categories of a type from MENTORS
 	selectCategories: function(category) {return `SELECT ID, FNAME, LNAME, IMG FROM MENTORS WHERE CATEGORY = "${category}";`},
 	//Insert a new user into the table -- needs variable names as they are in VALUES(...)
-	newUser: function(table, id, fname, lname, category, description, img) {return `INSERT INTO "${table}"(ID, FNAME, LNAME, CATEGORY, DESCRIPTION, IMG) VALUES(${id}, "${fname}", "${lname}", "${category}", "${description}", "${img}");`},
+	newUser: function(id, fname, lname, category, description, img, username, pword, email, phone) {return `INSERT INTO MENTORS(ID, FNAME, LNAME, CATEGORY, DESCRIPTION, IMG) VALUES(${id}, "${fname}", "${lname}", "${category}", "${description}", "${img}");INSERT INTO MENTORDATA VALUES("${ID}", "${username}", "${pword}", "${email}", "${phone}")`},
 	//Update a user's values -- note that ALL values except ID need to be accounted for, even if they are unchanged
 	editUser:function(table, fname, lname, category, description, img, id) {return `UPDATE "${table}" SET FNAME = ${fname}, LNAME = ${lname}, CATEGORY = ${category}, DESCRIPTION = ${description}, IMG = ${img} WHERE ID = ${id};`},
 	//Delete a user by ID number
