@@ -53,14 +53,13 @@ mentorsRouter.get('/categories/:category', (req, res, next) => {
 mentorsRouter.post('/', (req, res, next) => {
   let body = req.body;
   console.log(req.body);
-
   let id = Math.floor(Math.random() * 10000000000);
   console.log(id);
   let fname = body.fname;
   let lname = body.lname;
   let category = body.category;
   let description = body.description;
-  let img = body.img;
+  let img = body.userFile;
   let username = body.username;
   let pword = body.pword;
   let email = body.email;
