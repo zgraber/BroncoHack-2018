@@ -31,7 +31,13 @@ mentorsRouter.get('/:id', (req, res, next) => {
 
 mentorsRouter.get('/categories/:category', (req, res, next) => {
   let category = req.params.category;
-  db.get(sql.Methods.selectCategories(category));
+  db.all(sql.Methods.selectCategories(category), function(err, rows){
+    if(err) {
+      res.status(404).send('Nothing found');
+    } else {
+      res.status(200).send(rows);
+    }
+  });
 })
 
 mentorsRouter.post('/', (req, res, next) => {

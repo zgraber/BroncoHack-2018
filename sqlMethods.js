@@ -1,9 +1,9 @@
 module.exports = {
 	//Makes the tables initially
-	createTable: function() {'CREATE TABLE IF NOT EXISTS MENTORS(ID INT NOT NULL, FNAME VARCHAR(20) NOT NULL, LNAME VARCHAR(20) NOT NULL, CATEGORY VARCHAR(20) NOT NULL, DESCRIPTION VARCHAR(500),IMG VARCHAR(50), PRIMARY KEY (ID));',
-	
+	createTable: function() {return 'CREATE TABLE IF NOT EXISTS MENTORS(ID INT NOT NULL, FNAME VARCHAR(20) NOT NULL, LNAME VARCHAR(20) NOT NULL, CATEGORY VARCHAR(20) NOT NULL, DESCRIPTION VARCHAR(500),IMG VARCHAR(50), PRIMARY KEY (ID));'},
+
 	//Pulls all mentors from the table
-	allData: function(table) {`SELECT * FROM "${table}";`},
+	allData: function(table) {return `SELECT * FROM "${table}";`},
 	//Select all the data on a user from the table
 	selectRow: function(table, id){return `SELECT * FROM ${table} WHERE ID = ${id};`},
 	//Select categories of a type from MENTORS
