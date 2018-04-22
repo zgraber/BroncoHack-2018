@@ -33,7 +33,9 @@ app.engine('handlebars',hbs.engine);
 app.set('view engine', 'handlebars');
 
 db.serialize(function() {
-  db.run(sqlMethods.createTable());
+  db.run(sqlMethods.createMentorTable());
+  db.run(sqlMethods.createMentorDataTable());
+  db.run(sqlMethods.createSiteDataTable());
   //db.run(sqlMethods.newUser('1', 'Zak', 'Graber', 'Law', 'asdf', 'path', '1'));
 });
 

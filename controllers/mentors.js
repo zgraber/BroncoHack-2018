@@ -31,7 +31,7 @@ const saveImage = (req, res, next) => {
   req.pipe(req.busboy);
   req.busboy.on('file', function (fieldname, file, filename) {
       console.log("Uploading: " + filename);
-      let filePath = __dirname + '/userimages/' + filename;
+      let filePath = './views/images/' + filename;
       console.log(filePath);
       req.body['img'] = filePath;
       fstream = fs.createWriteStream(filePath);
@@ -103,14 +103,14 @@ mentorsRouter.post('/', saveImage, (req, res, next) => {
   let id = Math.floor(Math.random() * 10000000000);
   console.log(id);
   //console.log(req.headers);
-  var str;
+  /*var str;
   req.on('data', (data) => {
 	  //str = data.toString();
 	  console.log(data.toString());
   });
   req.on('end', () => {
 	  console.log('ok');
-  });
+  });*/
   //console.log(str);
   //let index =
   let body = req.body;
