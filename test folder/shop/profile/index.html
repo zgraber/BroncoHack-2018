@@ -8,7 +8,7 @@
     <meta name="author" content="">
 
     <title>Mentorship Marketplace Profiles</title>
-
+    <script src="handlebars-v4.0.2.js"></script>
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -67,20 +67,45 @@
           <div class="card mt-4">
             <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
             <div class="card-body">
-                <h3 class="card-title">Mentor Name:
-                    <div>
-                        {{name}}
-                    </div>
-                </h3>
-                <h4>Mentorship: {{occupation}}</h4>
-                <h5>Supporters: {{supporters}}</h5>
+                <h2>Mentor Name: {{name}}</h2>
+                <h3>Mentorship: {{occupation}}</h3>
+                <h4>Supporters: {{supporters}}</h4>
+            </div>
+            
+       
               <p class="card-text">Here is my vast experience and credibility of why I'm mentoring your ass on math! <br> 2+2 is 4 - 1 that's 3, QUICK MATHS!!!</br></p>
               <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
               4.0 stars
             </div>
           </div>
+        <!------Mentor Names------>
+        <div id="MentorNames-template"></div>
+        
+        <script id="mentor-template" type="text/x-handlebars-template">
+            
+        <h5>Mentor: {{name}} </h5>
+        </script>
+        
+        <script type="text/javascript">
+            
+            var nameInfo = document.getElementById("mentor-template").innerHTML;
+                                                   
+            var template = Handlebars.compile(nameInfo);
+            
+            var mentorNames = template({
+                name: "Carter Duncan",
+            })
+            
+            document.getElementById("mentorNames").innerHTML += mentorNames;
+        
+        </script>
+                                                   
+            
+                                                   
+            
+            
           <!-- /.card -->
-
+          
           <div class="card card-outline-secondary my-4">
             <div class="card-header">
               Product Reviews
