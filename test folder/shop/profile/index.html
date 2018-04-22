@@ -71,24 +71,41 @@
                 <h3>Mentorship: {{occupation}}</h3>
                 <h4>Supporters: {{supporters}}</h4>
             </div>
-            <div id="nameData"></div>
-            <script type="text/javascript">
-                
-                var myInfo = "<p>My name is {{name}} and my occupation is {{occupation}} with {{supporters}} followers.</p>":
-                
-                var template = Handlebars.compile(myInfo);
-                
-                var data = template({name: "Carter", occupation: "Programmer", supporters: "1,000"});
-                
-                document.getElementById("nameData").innerHTML += data;
-            </script>
+            
+       
               <p class="card-text">Here is my vast experience and credibility of why I'm mentoring your ass on math! <br> 2+2 is 4 - 1 that's 3, QUICK MATHS!!!</br></p>
               <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
               4.0 stars
             </div>
           </div>
+        <!------Mentor Names------>
+        <div id="MentorNames-template"></div>
+        
+        <script id="mentor-template" type="text/x-handlebars-template">
+            
+        <h5>Mentor: {{name}} </h5>
+        </script>
+        
+        <script type="text/javascript">
+            
+            var nameInfo = document.getElementById("mentor-template").innerHTML;
+                                                   
+            var template = Handlebars.compile(nameInfo);
+            
+            var mentorNames = template({
+                name: "Carter Duncan",
+            })
+            
+            document.getElementById("mentorNames").innerHTML += mentorNames;
+        
+        </script>
+                                                   
+            
+                                                   
+            
+            
           <!-- /.card -->
-
+          
           <div class="card card-outline-secondary my-4">
             <div class="card-header">
               Product Reviews
