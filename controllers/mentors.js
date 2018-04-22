@@ -8,7 +8,7 @@ const mentorsRouter = express.Router();
 module.exports = mentorsRouter;
 //app.use(bodyParser.json());
 mentorsRouter.get('/', (req, res, next) => {
-  db.all(sqlMethods.allMentors, function(err, rows){
+  db.all(sqlMethods.allData('MENTORS'), function(err, rows){
     if(err) {
       console.log(err);
     } else {
@@ -19,7 +19,7 @@ mentorsRouter.get('/', (req, res, next) => {
 
 mentorsRouter.get('/:id', (req, res, next) => {
   let id = req.params.id;
-  db.get(sqlMethods.mentor(id), (err, row) =>{
+  db.get(sqlMethods.selectRow("MENTOR", id), (err, row) =>{
     if(err) {
       console.log('User Not Found');
       res.status(404).send('User Not Found');
@@ -38,9 +38,13 @@ mentorsRouter.post('/', (req, res, next) => {
   let category = body.category;
   let description = body.description;
   let img = body.img;
-  let tier = body.tier;
-  //console.log(sqlMethods.newUser(id, fname, lname, category, description, img, tier));
-  db.run(sqlMethods.newUser(id, fname, lname, category, description, img, tier));
+  let username = body.username;
+  let pword = body.pword;
+  let email = body.email;
+  let phone = body.phone;
+  //console.log(sqlMethods.newUser(id, fname, lname, category, description, img));
+  db.run(sqlMethods.newUser("MENTOR", id, fname, lname, category, description, img));
+  db.run(sqlMethods.newUser("MENTORDATA", id, username, pword, email, phone));
   console.log('User Added');
   res.status(201).redirect('/');
 });
@@ -53,8 +57,7 @@ mentorsRouter.put('/:id', (req, res, next) => {
   let category = body.category;
   let description = body.description;
   let img = body.img;
-  let tier = body.tier;
-  db.run(sqlMethods.editUser(fname, lname, category, description, img, tier, id));
+  db.run(sqlMethods.editUser("MENTOR", fname, lname, category, description, img, tier, id));
   console.log('User Edited');
   res.status(200).send();
 });
