@@ -109,8 +109,6 @@ mentorsRouter.get('/login', (req, res, next) => {
 		}
 	});
 });
-  res.render('mentorList2.handlebars',)
-})
 
 mentorsRouter.post('/', saveImage, (req, res, next) => {
   let id = Math.floor(Math.random() * 10000000000);
@@ -189,4 +187,4 @@ mentorsRouter.delete('/:id', (req, res, next) => {
       res.send('User Deleted');
     }
   });
-})
+});
