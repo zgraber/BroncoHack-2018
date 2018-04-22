@@ -8,7 +8,7 @@
     <meta name="author" content="">
 
     <title>Mentorship Marketplace Profiles</title>
-
+    <script src="handlebars-v4.0.2.js"></script>
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -67,14 +67,21 @@
           <div class="card mt-4">
             <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
             <div class="card-body">
-                <div class="profile">
-                    <h1>{{name}}</h1>
-                    <h2>{{occupation}}</h2>
-                    <h3>{{supporters}}</h3>
-                </div>
-           </div>
-                <h4>Mentorship: {{occupation}}</h4>
-                <h5>Supporters: {{supporters}}</h5>
+                <h2>Mentor Name: {{name}}</h2>
+                <h3>Mentorship: {{occupation}}</h3>
+                <h4>Supporters: {{supporters}}</h4>
+            </div>
+            <div id="nameData"></div>
+            <script type="text/javascript">
+                
+                var myInfo = "<p>My name is {{name}} and my occupation is {{occupation}} with {{supporters}} followers.</p>":
+                
+                var template = Handlebars.compile(myInfo);
+                
+                var data = template({name: "Carter", occupation: "Programmer", supporters: "1,000"});
+                
+                document.getElementById("nameData").innerHTML += data;
+            </script>
               <p class="card-text">Here is my vast experience and credibility of why I'm mentoring your ass on math! <br> 2+2 is 4 - 1 that's 3, QUICK MATHS!!!</br></p>
               <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
               4.0 stars
