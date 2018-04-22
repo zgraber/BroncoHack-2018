@@ -5,8 +5,13 @@
   </head>
   <body>
     <form id="profile" onsubmit="return validateForm()" action="/mentors" method="post">
-    First Name:<input type="text" name="fname"/><br>
+    First Name*:<input type="text" name="fname"/><br>
     Last Name:<input type="text" name="lname"/><br>
+    Username*:<input type="text" name="user"/><br>
+    Password*:<input type="text" name="pw"/><br>
+    Confirm Password*:<input type="text" name="confirm"/><br>
+    Email*:<input type="text" name="email"/><br>
+    Phone Number:(<input type="text" name="areacode"/>)<input type="text" name="3dig"/>-<input type="text" name="4dig"/><br>  
     Category:<select name="category"><br>
                 <option value="coding"> Coding </option>
                 <option value="finance"> Finance </option>
@@ -19,6 +24,7 @@
     Profile Picture:<br><img src="pic" height="200" alt="Image Preview.."/><br>
     <input type="file" onchange="previewFile()" name="userFile"/><br>
     <button type="submit" value="Create Profile">Create Profile</button>
+    <p>* is required.</p>
     <script>
       function previewFile() {
         var preview = document.querySelector('img');
