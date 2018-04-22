@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/css/bootstrap-grid.css" type="text/css" rel="stylesheet">
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/css/bootstrap-grid.css.map" type="text/css" rel="stylesheet">
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.min.js" type="text/css" rel="stylesheet">
+      <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+
+      <style>
+          /*!
+ * Start Bootstrap - 3 Col Portfolio (https://startbootstrap.com/template-overviews/3-col-portfolio)
+ * Copyright 2013-2017 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-3-col-portfolio/blob/master/LICENSE)
+ */
+
+          body {
+              padding-top: 54px;
+          }
+
+          @media (min-width: 992px) {
+              body {
+                  padding-top: 56px;
+              }
+          }
+
+          .portfolio-item {
+              margin-bottom: 30px;
+          }
+
+          .pagination {
+              margin-bottom: 30px;
+          }
+
+          /* new css stuff */
+          .center-text{
+              text-align: center;
+          }
+          .center-img{
+              display: block;
+              margin-left: auto;
+              margin-right: auto;
+          }
+      </style>
+    <title>#Category# List</title>
+
+    <!-- <img src=></img>-->
+
+    <!-- Bootstrap core CSS -->
+  <!--  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+
+    <!-- Custom styles for this template -->
+  <!--  <link href="css/3-col-portfolio.css" rel="stylesheet"> -->
+	<!-- Favicon -->
+      <link href="../images/favicon.png" rel="shortcut icon"  type="image/x-icon">
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a href="../prelog/prelog.html"><img class="logo" src="../images/logo1.png" alt="Loco Logo" width="170px" height="40px"/></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="categories.html">Categories</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="signin.html">Sign in</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+   <!-- <div class="container"> -->
+
+      <!-- Page Heading -->
+
+    <div class="container">
+        <h1 class="my-4"> Mentors</h1>
+        {{#grouped_each 3 data}}
+            <div class="row">
+                {{#each this}}
+                    <div class="col-lg-4 col-sm-6 portfolio-item">
+                    <div class="card h-100">
+                        <a class="center-text" href="/mentors/site/{{ID}}"><img class="card-img-top" src="../{{this.IMG}}"  width="200px" height="200px"></img></a> <br/><br/><br/>
+                        <a class="center-text" href="/mentors/site/{{ID}}">{{ this.FNAME }} {{ this.LNAME }}</a>
+                    </div>
+                    </div>
+                {{/each}}
+            </div>
+        {{/grouped_each}}
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Created for BroncoHack 2018 by Alexander Kennedy, Ari Soriano, Matthew Zhang, Zak Graber, William Henrion, and Carter Duncan</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+</html>
