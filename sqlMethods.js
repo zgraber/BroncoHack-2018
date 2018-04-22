@@ -14,4 +14,5 @@ module.exports = {
 	delUser: function(table, id){return `DELETE FROM "${table}" WHERE ID = "${id}"`},
 	//Number of rows for table
 	countUser: function(table) {return `SELECT COUNT ID FROM "${table}"`}
+
 };
