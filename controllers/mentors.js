@@ -29,6 +29,11 @@ mentorsRouter.get('/:id', (req, res, next) => {
   });
 });
 
+mentorsRouter.get('/categories/:category', (req, res, next) => {
+  let category = req.params.category;
+  db.get(sql.Methods.selectCategories(category));
+})
+
 mentorsRouter.post('/', (req, res, next) => {
   let body = req.body;
   //console.log(req.body);
