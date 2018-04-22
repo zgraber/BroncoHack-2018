@@ -20,7 +20,11 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-const mentorsRouter = require('./controllers/mentors.js')
+const mentorsRouter = require('./controllers/mentors.js');
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname + '\\form.html'));
+});
+
 app.use('/mentors', mentorsRouter);
 
 const PORT = process.env.PORT || 4001;

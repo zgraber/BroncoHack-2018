@@ -56,5 +56,5 @@ mentorsRouter.put('/:id', (req, res, next) => {
   let tier = body.tier;
   db.run(sqlMethods.editUser(fname, lname, category, description, img, tier, id));
   console.log('User Edited');
-  res.status(200).send());
+  res.status(200).send();
 });
