@@ -1,5 +1,7 @@
 const express = require('express');
 //const app = express();
+const fs = require('fs');
+const busboy = require('connect-busboy')
 const bodyParser = require('body-parser');
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('./main.db');
@@ -7,7 +9,7 @@ let sqlMethods = require('../sqlMethods');
 const mentorsRouter = express.Router();
 module.exports = mentorsRouter;
 //app.use(bodyParser.json());
-
+mentorsRouter.use(busboy());
 /*function getRows() {
   db.all(sqlMethods.allData('MENTORS'), function(err, rows){
     if(err) {
@@ -67,7 +69,21 @@ mentorsRouter.post('/', (req, res, next) => {
       });
   });
   let body = req.body;
-  console.log(req.body);
+  var fstream;
+  req.pipe(req.busboy);
+  req.busboy.on('error', function(err){
+    console.log(err);
+  });
+  req.busboy.on('file', function (fieldname, file, filename) {
+      console.log("Uploading: " + filename);
+      let filePath = path.join(__dirname + '/public/img/' + filename);
+      fstream = fs.createWriteStream(filePath);
+      file.pipe(fstream);
+      fstream.on('close', function () {
+          console.log('Files Saved');
+      });
+  });
+  console.log(req.files);
   let id = Math.floor(Math.random() * 10000000000);
   console.log(id);
   let fname = body.fname;
