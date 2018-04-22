@@ -8,7 +8,9 @@ var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('./main.db');
 
 db.serialize(function() {
-  db.run(sqlMethods.createTable());
+  db.run(sqlMethods.createMentorTable());
+  db.run(sqlMethods.createMentorDataTable());
+  db.run(sqlMethods.createSiteDataTable());
   //db.run(sqlMethods.newUser('1', 'Zak', 'Graber', 'Law', 'asdf', 'path', '1'));
 });
 
