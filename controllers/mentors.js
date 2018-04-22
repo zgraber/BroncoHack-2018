@@ -20,8 +20,6 @@ mentorsRouter.use(busboy());
   });
 }*/
 
-var fs = require('fs');
-var busboy = require('connect-busboy');
 
 mentorsRouter.use(busboy());
 
@@ -59,30 +57,8 @@ mentorsRouter.get('/categories/:category', (req, res, next) => {
 })
 
 mentorsRouter.post('/', (req, res, next) => {
-  req.pipe(req.busboy);
-  req.busboy.on('file', function (fieldname, file, filename) {
-      console.log("Uploading: " + filename); 
-      fstream = fs.createWriteStream(__dirname + '/userimages/' + filename);
-      file.pipe(fstream);
-      fstream.on('close', function () {
-          res.redirect('back');
-      });
-  });
   let body = req.body;
-  var fstream;
-  req.pipe(req.busboy);
-  req.busboy.on('error', function(err){
-    console.log(err);
-  });
-  req.busboy.on('file', function (fieldname, file, filename) {
-      console.log("Uploading: " + filename);
-      let filePath = path.join(__dirname + '/public/img/' + filename);
-      fstream = fs.createWriteStream(filePath);
-      file.pipe(fstream);
-      fstream.on('close', function () {
-          console.log('Files Saved');
-      });
-  });
+
   console.log(req.files);
   let id = Math.floor(Math.random() * 10000000000);
   console.log(id);
@@ -96,7 +72,15 @@ mentorsRouter.post('/', (req, res, next) => {
   let email = body.email;
   let phone = body.phone;
   var fstream;
-  
+  req.pipe(req.busboy);
+  req.busboy.on('file', function (fieldname, file, filename) {
+      console.log("Uploading: " + filename);
+      fstream = fs.createWriteStream(__dirname + '/userimages/' + filename);
+      file.pipe(fstream);
+      fstream.on('close', function () {
+          console.log('success');
+      });
+  });
   //console.log(sqlMethods.newUser(id, fname, lname, category, description, img));
   db.run(sqlMethods.newUser(id, fname, lname, category, description, file, username, pword, email, phone));
   console.log('User Added');
