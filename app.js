@@ -13,11 +13,10 @@ db.serialize(function() {
 db.close();
 
 ap.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'public')));
 
 const mentorsRouter = require('./controllers/mentors.js')
 app.use('/mentors', mentorsRouter);
-
-app.use(express.static(path.join(__dirname, 'public')));
 
 const PORT = process.env.PORT || 4001;
 app.listen(PORT, () => {
