@@ -1,6 +1,7 @@
 var context = {
-	"name":"Ritesh Kumar",
-	"occupation" : "Developer"
+	"First Name":"Carter",
+	"Last Name":"Duncan",
+	"occupation" : "Programmer"
 }
 
 var templateScript = Handlebars.templates.demo(context);
