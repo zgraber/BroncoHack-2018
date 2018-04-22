@@ -93,7 +93,7 @@ mentorsRouter.get('/categories/:category', (req, res, next) => {
     if(err) {
       res.status(404).send('Nothing found');
     } else {
-      res.render('mentorList', {data: JSON.stringify(rows)});
+      res.render('mentorList2.handlebars', {data: JSON.stringify(rows)});
     }
   });
 });
@@ -109,6 +109,8 @@ mentorsRouter.get('/login', (req, res, next) => {
 		}
 	});
 });
+  res.render('mentorList2.handlebars',)
+})
 
 mentorsRouter.post('/', saveImage, (req, res, next) => {
   let id = Math.floor(Math.random() * 10000000000);
