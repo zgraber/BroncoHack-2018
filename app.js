@@ -98,7 +98,7 @@ app.get('/mentorList', function (req, res) {
 
     res.render('mentorList',{data: data});
 });
-q
+
 var data2 = [
     {
         "id": 223,
