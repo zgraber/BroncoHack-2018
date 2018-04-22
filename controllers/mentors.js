@@ -3,13 +3,13 @@ const express = require('express');
 const fs = require('fs');
 const busboy = require('connect-busboy')
 const bodyParser = require('body-parser');
+const path = require('path');
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('./main.db');
 let sqlMethods = require('../sqlMethods');
 const mentorsRouter = express.Router();
 module.exports = mentorsRouter;
-//app.use(bodyParser.json());
-mentorsRouter.use(busboy());
+mentorsRouter.use(bodyParser.json());
 /*function getRows() {
   db.all(sqlMethods.allData('MENTORS'), function(err, rows){
     if(err) {
@@ -22,16 +22,18 @@ mentorsRouter.use(busboy());
 
 mentorsRouter.use(busboy());
 
-mentorsRouter.use(busboy());
 
 const saveImage = (req, res, next) => {
+  //let filePath;
   console.log(req.body);
   var fstream;
-  console.log(req.busboy);
+  //console.log(req.busboy);
   req.pipe(req.busboy);
   req.busboy.on('file', function (fieldname, file, filename) {
       console.log("Uploading: " + filename);
-      let filePath = path.join(__dirname + '/userimages/' + filename);
+      let filePath = __dirname + '/userimages/' + filename;
+      console.log(filePath);
+      req.body['img'] = filePath;
       fstream = fs.createWriteStream(filePath);
       file.pipe(fstream);
       fstream.on('close', function () {
@@ -45,6 +47,7 @@ const saveImage = (req, res, next) => {
       req.body[fieldname] = val;
       console.log(val);
   });
+
   req.busboy.on('finish', function(){
      next();
    });
@@ -114,24 +117,14 @@ mentorsRouter.post('/', saveImage, (req, res, next) => {
   let lname = body.lname;
   let category = body.category;
   let description = body.description;
-  let file = body.file;
+  let img = body.img;
   let username = body.username;
   let pword = body.pword;
   let email = body.email;
   let phone = body.phone;
-  var fstream;
 
-  req.pipe(req.busboy);
-  req.busboy.on('file', function (fieldname, file, filename) {
-      console.log("Uploading: " + filename);
-      fstream = fs.createWriteStream(__dirname + '/userimages/' + filename);
-      file.pipe(fstream);
-      fstream.on('close', function () {
-          console.log('success');
-      });
-  });
   //console.log(sqlMethods.newUser(id, fname, lname, category, description, img));
-  //db.run(sqlMethods.newUser(id, fname, lname, category, description, file, username, pword, email, phone));
+  db.run(sqlMethods.newUser(id, fname, lname, category, description, img, username, pword, email, phone));
   console.log('User Added');
   res.status(201).redirect('/');
 });
