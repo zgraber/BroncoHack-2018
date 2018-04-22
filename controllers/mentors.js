@@ -93,7 +93,7 @@ mentorsRouter.get('/categories/:category', (req, res, next) => {
     if(err) {
       res.status(404).send('Nothing found');
     } else {
-      res.status(200).send(JSON.stringify(rows));
+      res.render('mentorList', {data: JSON.stringify(rows)});
     }
   });
 })
