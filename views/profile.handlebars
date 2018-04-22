@@ -16,6 +16,8 @@
     <!-- Custom styles for this template -->
     <link href="css/template.css" rel="stylesheet">
     <link href="css/stylesheet.css" rel="stylesheet">
+    <!-- Favicon -->
+    <link href="../images/favicon.png" rel="shortcut icon"  type="image/x-icon">
 
 </head>
 
@@ -24,23 +26,20 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">Mentor Marketplace</a>
+        <a href="../prelog/prelog.html"><img class="logo" src="../images/logo1.png" alt="Loco Logo" width="170px" height="40px"/></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Categories</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Profile <span class="sr-only">(current)</span> </a>
+                    <a class="nav-link" href="categories.html">Categories</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Sign in</a>
+                    <a class="nav-link" href="signin.html">Sign in</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link" href="about.html">About</a>
                 </li>
             </ul>
         </div>
@@ -54,11 +53,11 @@
 
         <div class="col-lg-3">
             <img class="card-img-top img-fluid profile-image" src="http://placehold.it/200x200" alt="Profile image">
-            <h1 class="my-4 center-text">{{test}}</h1>
+            <h1 class="my-4 center-text">Person Name</h1>
             <div class="list-group">
                 <p class="list-group-item center-text"><b>Category Here</b>
-                <p class="list-group-item"><b>Credentials:</b><br/> Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
-                <p class="list-group-item"><b>Tier:</b><br/> Lorem ipsum dolor sit amet $24.99
+                <p class="list-group-item"><b>Credentials:</b><br/> PhD in Computer Science from Stanford University </p>
+                <p class="list-group-item"><b>Tier:</b><br/> $1.00 - Tier 1 Lesson <br/> $4.99 - Tier 2 Exclusive Content
                     <button onclick="funcBuy()" type="button" " class="btn btn-success moneybutton">Purchase</button>
                 </p>
             </div>
@@ -68,7 +67,7 @@
         <div class="col-lg-9">
 
             <div class="card mt-4">
-                <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
+                <img class="card-img-top img-fluid" src="../images/learning.jpg" alt="">
                 <div class="card-body">
                     <h3 class="card-title" >Course Description</h3>
                     <h4>$24.99</h4>
@@ -126,7 +125,7 @@
 <!-- Footer -->
 <footer class="py-5 bg-dark">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+        <p class="m-0 text-center text-white">Created for BroncoHack 2018 by Alexander Kennedy, Ari Soriano, Matthew Zhang, Zak Graber, William Henrion, and Carter Duncan</p>
     </div>
     <!-- /.container -->
 </footer>
