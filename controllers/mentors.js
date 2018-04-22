@@ -20,7 +20,6 @@ mentorsRouter.use(busboy());
   });
 }*/
 
-
 mentorsRouter.use(busboy());
 
 mentorsRouter.get('/', (req, res, next) => {
@@ -31,6 +30,18 @@ mentorsRouter.get('/', (req, res, next) => {
       res.send(JSON.stringify(rows));
     }
   })
+});
+
+mentorsRouter.get('/site/:id', (req, res, next) => {
+	let id = req.params.id;
+	db.get(sqlMethods.getSite(id), (err, row) =>{
+		if(err) {
+			console.log('User not found');
+			res.status(404).send('User not found');
+		} else {
+			res.status(200).send(JSON.stringify(row));
+		}
+	});
 });
 
 mentorsRouter.get('/:id', (req, res, next) => {
@@ -57,11 +68,20 @@ mentorsRouter.get('/categories/:category', (req, res, next) => {
 })
 
 mentorsRouter.post('/', (req, res, next) => {
-  let body = req.body;
-
-  console.log(req.files);
   let id = Math.floor(Math.random() * 10000000000);
   console.log(id);
+  //console.log(req.headers);
+  var str;
+  req.on('data', (data) => {
+	  //str = data.toString();
+	  console.log(data.toString());
+  });
+  req.on('end', () => {
+	  console.log('ok');
+  });
+  //console.log(str);
+  //let index = 
+  /*let body = req.body;
   let fname = body.fname;
   let lname = body.lname;
   let category = body.category;
@@ -70,7 +90,7 @@ mentorsRouter.post('/', (req, res, next) => {
   let username = body.username;
   let pword = body.pword;
   let email = body.email;
-  let phone = body.phone;
+  let phone = body.phone;*/
   var fstream;
   req.pipe(req.busboy);
   req.busboy.on('file', function (fieldname, file, filename) {
@@ -82,12 +102,12 @@ mentorsRouter.post('/', (req, res, next) => {
       });
   });
   //console.log(sqlMethods.newUser(id, fname, lname, category, description, img));
-  db.run(sqlMethods.newUser(id, fname, lname, category, description, file, username, pword, email, phone));
+  //db.run(sqlMethods.newUser(id, fname, lname, category, description, file, username, pword, email, phone));
   console.log('User Added');
   res.status(201).redirect('/');
 });
 
-mentorsRouter.put('/public/:id', (req, res, next) => {
+mentorsRouter.put('/public', (req, res, next) => {
   let body = req.body;
   let fname = body.fname;
   let lname = body.lname;
@@ -100,7 +120,7 @@ mentorsRouter.put('/public/:id', (req, res, next) => {
   res.status(200).send();
 });
 
-mentorsRouter.put('/private/:id', (req, res, next) => {
+mentorsRouter.put('/private', (req, res, next) => {
 	let body = req.body;
 	let pword = body.pword;
 	let email = body.email;
@@ -108,6 +128,29 @@ mentorsRouter.put('/private/:id', (req, res, next) => {
 	let id = body.id;
 	db.run(sqlMethods.editPrivateUser(pword, email, phone, id));
 	console.log('User\'s Private Data Edited');
+	res.status(200).send();
+});
+
+mentorsRouter.put('/course', (req, res, next) => {
+	let body = req.body;
+	let id = body.id;
+	let profile = body.profile;
+	let name = body.name;
+	let category = body.category;
+	let cdescription = body.cdescription;
+	let cname = body.cname;
+	let cmaterial = body.material;
+	db.run(sqlMethods.fillSite(id, profile, name, category, cdescription, cname, cmaterial));
+});
+
+mentorsRouter.put('/generic', (req, res, next) => {
+	let body = req.body;
+	let id = body.id;
+	let table = body.table;
+	let column = body.column;
+	let data = body.data;
+	db.run(sqlMethods.gEdit(table, id, column, data));
+	console.log('Table editted');
 	res.status(200).send();
 });
 
