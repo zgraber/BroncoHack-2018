@@ -20,6 +20,7 @@ mentorsRouter.use(busboy());
   });
 }*/
 
+mentorsRouter.use(busboy());
 
 mentorsRouter.use(busboy());
 
@@ -108,7 +109,7 @@ mentorsRouter.post('/', saveImage, (req, res, next) => {
   });
   //console.log(str);
   //let index =
-  /*let body = req.body;
+  let body = req.body;
   let fname = body.fname;
   let lname = body.lname;
   let category = body.category;
@@ -117,8 +118,9 @@ mentorsRouter.post('/', saveImage, (req, res, next) => {
   let username = body.username;
   let pword = body.pword;
   let email = body.email;
-  let phone = body.phone;*/
+  let phone = body.phone;
   var fstream;
+
   req.pipe(req.busboy);
   req.busboy.on('file', function (fieldname, file, filename) {
       console.log("Uploading: " + filename);
