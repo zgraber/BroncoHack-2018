@@ -52,7 +52,7 @@
 
      <!-- Page Heading -->
      <h1 class="my-4">Sign Up</h1>
-    <form id="profile" onsubmit="return validateForm()" action="/mentors" method="post">
+    <form id="profile" onsubmit="return validateForm()" method="post" enctype="multipart/form-data" action="/mentors" >
     <label class="starred">First Name*:</label><input class="form-control" type="text" name="fname"/><br>
     <label class="starred">Last Name*:</label><input class="form-control" type="text" name="lname"/><br>
     <label class="starred">Username*:</label><input class="form-control" type="text" name="user"/><br>
@@ -73,7 +73,7 @@
     <label>Description:</label><input class="form-control" type="text" name="description"/> <br>
 	
     <label>Profile Picture:</label><br><!--<img id="preview" src="pic" height="200" alt="Image Preview.."/><br> -->
-    <input  type="file" onchange="previewFile()" name="userFile"/><br> <br>
+    <input type="file" onchange="previewFile()" name="file"><br> <br>
 
     <button "type="submit" value="Create Profile">Create Profile</button>
     <p class="starred">* is required.</p>
