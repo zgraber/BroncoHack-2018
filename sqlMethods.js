@@ -6,6 +6,8 @@ module.exports = {
 	allData: function(table) {`SELECT * FROM "${table}";`},
 	//Select all the data on a user from the table
 	selectRow: function(table, id){return `SELECT * FROM ${table} WHERE ID = ${id};`},
+	//Select categories of a type from MENTORS
+	selectCategories: function(category) {return `SELECT ID, FNAME, LNAME, IMG FROM MENTORS WHERE CATEGORY = "${category}"`},
 	//Insert a new user into the table -- needs variable names as they are in VALUES(...)
 	newUser: function(table, id, fname, lname, category, description, img, tier) {return `INSERT INTO "${table}"(ID, FNAME, LNAME, CATEGORY, DESCRIPTION, IMG, TIER) VALUES(${id}, "${fname}", "${lname}", "${category}", "${description}", "${img}", ${tier});`},
 	//Update a user's values -- note that ALL values except ID need to be accounted for, even if they are unchanged
