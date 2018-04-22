@@ -32,7 +32,7 @@ mentorsRouter.get('/:id', (req, res, next) => {
 mentorsRouter.post('/', (req, res, next) => {
   let body = req.body;
   //console.log(req.body);
-  let id = body.id;
+  let id = db.run(sqlMethods.countUser("MENTOR"));
   let fname = body.fname;
   let lname = body.lname;
   let category = body.category;
