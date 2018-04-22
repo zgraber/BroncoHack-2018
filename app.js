@@ -1,8 +1,16 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const sqlite3 = require('sqlite3').verbose;
-app.use(express.static('public'));
+const sqlMethods = require('./sqlMethods.js');
+
+var sqlite3 = require('sqlite3').verbose();
+var db = new sqlite3.Database(':memory:');
+
+db.serialize(function() {
+  db.run(sqlMethods.createTable);
+});
+
+db.close();
 
 const PORT = process.env.PORT || 4001;
 
