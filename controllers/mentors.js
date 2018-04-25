@@ -100,10 +100,10 @@ mentorsRouter.get('/categories/:category', (req, res, next) => {
       res.render('mentorList2',{data:row});
     }
   });
-<<<<<<< HEAD
-  
+
+
 })
-=======
+
 });
 
 mentorsRouter.get('/login', (req, res, next) => {
@@ -117,7 +117,6 @@ mentorsRouter.get('/login', (req, res, next) => {
 		}
 	});
 });
->>>>>>> f425f42c019f8e3a45f7c6342f935fa4ca49d9da
 
 mentorsRouter.post('/', saveImage, (req, res, next) => {
   let id = Math.floor(Math.random() * 10000000000);
