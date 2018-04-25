@@ -100,10 +100,13 @@ mentorsRouter.get('/categories/:category', (req, res, next) => {
       res.render('mentorList2',{data:row});
     }
   });
+<<<<<<< HEAD
 
 
 })
 
+=======
+>>>>>>> c39f576225696e43a1ac9097317be003f6ea85b4
 });
 
 mentorsRouter.get('/login', (req, res, next) => {
