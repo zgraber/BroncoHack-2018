@@ -31,7 +31,7 @@ const saveImage = (req, res, next) => {
   req.pipe(req.busboy);
   req.busboy.on('file', function (fieldname, file, filename) {
       console.log("Uploading: " + filename);
-      let filePath = __dirname + '/userimages/' + filename;
+      let filePath = './views/images/' + filename;
       console.log(filePath);
       req.body['img'] = filePath;
       fstream = fs.createWriteStream(filePath);
@@ -87,31 +87,62 @@ mentorsRouter.get('/:id', (req, res, next) => {
   });
 });
 
+
 mentorsRouter.get('/categories/:category', (req, res, next) => {
   let category = req.params.category;
   db.all(sqlMethods.selectCategories(category), function(err, rows){
     if(err) {
       res.status(404).send('Nothing found');
     } else {
-      res.render('mentorList', {data: JSON.stringify(rows)});
+<<<<<<< HEAD
+      res.render('mentorList2.handlebars', {data: JSON.stringify(rows)});
     }
   });
+});
+
+mentorsRouter.get('/login', (req, res, next) => {
+	let username = req.body.username;
+	let pword = req.body.pword;
+	db.get(sqlMethods.loginCheck(username, pword), function(err, row){
+		if(err){
+			res.status(404).send('Nothing found');
+		} else {
+			res.status(200).send(row);
+		}
+	});
+});
+=======
+      var row=JSON.stringify(rows);
+      console.log(row);
+      //var row=rows;
+      res.render('mentorList2',{data:row});
+    }
+  });
+<<<<<<< HEAD
+
+
 })
+>>>>>>> 860516fe9848828fb39a10faeba548a21bfdfaef
+
+=======
+>>>>>>> c39f576225696e43a1ac9097317be003f6ea85b4
+});
+
+mentorsRouter.get('/login', (req, res, next) => {
+	let username = req.body.username;
+	let pword = req.body.pword;
+	db.get(sqlMethods.loginCheck(username, pword), function(err, row){
+		if(err){
+			res.status(404).send('Nothing found');
+		} else {
+			res.status(200).send(row);
+		}
+	});
+});
 
 mentorsRouter.post('/', saveImage, (req, res, next) => {
   let id = Math.floor(Math.random() * 10000000000);
   console.log(id);
-  //console.log(req.headers);
-  var str;
-  req.on('data', (data) => {
-	  //str = data.toString();
-	  console.log(data.toString());
-  });
-  req.on('end', () => {
-	  console.log('ok');
-  });
-  //console.log(str);
-  //let index =
   let body = req.body;
   let fname = body.fname;
   let lname = body.lname;
@@ -122,9 +153,9 @@ mentorsRouter.post('/', saveImage, (req, res, next) => {
   let pword = body.pword;
   let email = body.email;
   let phone = body.phone;
-
-  //console.log(sqlMethods.newUser(id, fname, lname, category, description, img));
-  db.run(sqlMethods.newUser(id, fname, lname, category, description, img, username, pword, email, phone));
+  db.run(sqlMethods.newUser1(id, fname, lname, category, description, img));
+  db.run(sqlMethods.newUser2(id, username, pword, email, phone));
+  db.run(sqlMethods.newUser3(id));
   console.log('User Added');
   res.status(201).redirect('/');
 });
@@ -186,4 +217,8 @@ mentorsRouter.delete('/:id', (req, res, next) => {
       res.send('User Deleted');
     }
   });
-})
+<<<<<<< HEAD
+});
+=======
+});
+>>>>>>> 860516fe9848828fb39a10faeba548a21bfdfaef
