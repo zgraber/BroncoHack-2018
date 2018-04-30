@@ -53,11 +53,9 @@ app.use(express.static(path.join(__dirname, 'pages')));
 
 
 app.get('/', function(req, res) {
-<<<<<<< HEAD
-    res.sendFile(path.join(__dirname + '\\pages\\prelog\\prelog.html'));
-=======
+
     res.sendFile(path.join(__dirname + '\\views\\prelog.html'));
->>>>>>> 860516fe9848828fb39a10faeba548a21bfdfaef
+
     //res.render('')
 });
 
