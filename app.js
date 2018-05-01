@@ -1,78 +1,29 @@
-const express = require('express');
-const app = express();
-const bodyParser = require('body-parser');
-const sqlMethods = require('./sqlMethods.js');
-const path = require('path');
+//require Modules
+var express = require('express');
+var bodyParser = require('body-parser');
+var path  = require('path');
+var pug=require('pug');
 
-var exphbs=require('express-handlebars');
-var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database('./main.db');
+//Require other files I created
+var index = require('./routes/index.js')
+var test = require('./routes/test.js')
 
-var hbs = exphbs.create({
-    // Specify helpers which are only registered on this instance.
-    helpers: {
+//Port Stuff
+var app = express();
+var port = process.env.PORT || 8080;
 
-        grouped_each: function (every, context, options) {
-             var out = "", subcontext = [], i;
-             if (context && context.length > 0) {
-         for (i = 0; i < context.length; i++) {
-            if (i > 0 && i % every === 0) {
-                out += options.fn(subcontext);
-                subcontext = [];
-            }
-            subcontext.push(context[i]);
-        }
-        out += options.fn(subcontext);
-    }
-    return out;
-}
-    }
-});
+//Configure View Engine
+app.set("view engine", "pug");
+app.set('views', path.join(__dirname, 'views'));
 
-app.engine('handlebars',hbs.engine);
-app.set('view engine', 'handlebars');
-
-db.serialize(function() {
-  db.run(sqlMethods.createMentorTable());
-  db.run(sqlMethods.createMentorDataTable());
-  db.run(sqlMethods.createSiteDataTable());
-  //db.run(sqlMethods.newUser('1', 'Zak', 'Graber', 'Law', 'asdf', 'path', '1'));
-});
-
-db.close();
-
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
 
-app.use(express.static('views'));
-app.use(express.static(path.join(__dirname, 'pages')));
+//Where to go depending on the specified URL
+app.use('/',index);
+app.use('/test',test);
 
 
-
-
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '\\views\\prelog.html'));
-    //res.render('')
-});
-
-app.get('/form/:file', function(req, res) {
-  res.sendFile(path.join(__dirname + '\\views\\form.html'));
-});
-app.get('/categories', function(req, res) {
-  res.sendFile(path.join(__dirname + '\\views\\categories.html'));
-});
-
-//app.get('/categories', function(req, res) {
-//  res.render('categories');
-//});
-
-
-const mentorsRouter = require('./controllers/mentors.js');
-app.use('/mentors', mentorsRouter);
-
-const PORT = process.env.PORT || 4001;
-app.listen(PORT, () => {
-  console.log(`Server is listening on ${PORT}`);
-});
+//Create Express Server
+app.listen(port);
+console.log('Listening on port '+port);
