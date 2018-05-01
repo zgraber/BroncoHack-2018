@@ -19,6 +19,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+//Serve all static images in the public folder
+app.use(express.static('public'))
+
 //Where to go depending on the specified URL
 app.use('/',index);
 app.use('/test',test);
