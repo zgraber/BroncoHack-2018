@@ -14,12 +14,12 @@
 .row
     each mentor, i in mentorArray
         .col-xs-6
-            shit
+
             p #{mentor.FNAME}
             p #{mentor.LNAME}
-            img(src=mentor.IMG style="width:250px;height:250px;")
+            img(src="./savedimages/"+mentor.IMG style="width:250px;height:250px;")
 
-        unless(i % 2 == 0)
+        unless(i % 1 == 0)
             </div><div class="row">
 
 
