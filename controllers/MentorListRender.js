@@ -39,3 +39,10 @@ exports.renderList = function(req, res){
     res.render("mentorList",{mentorArray:mentorArray});
 };
 
+exports.mentorListData = function(req,res){
+
+    const category=req.params.category;
+    var jsonData={mentorArray:mentorArray}
+    res.send(mentorArray[0].FNAME);
+}
+

@@ -24,6 +24,12 @@ router.get('/controllerTest/:testId',test_controller.dynamic_Param_Test);
 //Render mentor list page
 router.get("/mentorList",MentorListRender.renderList);
 
+//Send a JSON of data for filling the mentor list
+router.get('/mentorList/:category',MentorListRender.mentorListData);
+
+
+
+
 
 //Additional test function
 
